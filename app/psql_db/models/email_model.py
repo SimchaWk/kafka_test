@@ -3,6 +3,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
 
+from app.psql_db.connection import session_maker
 from app.psql_db.models import Base
 
 
@@ -23,3 +24,9 @@ class Email(Base):
 
     def __repr__(self):
         return f"<Email(email='{self.email}', username='{self.username}')>"
+
+
+if __name__ == '__main__':
+    with session_maker() as session:
+        targettypes = session.query(Email).all()
+        print(targettypes)
