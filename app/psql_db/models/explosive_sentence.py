@@ -7,11 +7,11 @@ import uuid
 from app.psql_db.models import Base
 
 
-class Sentence(Base):
-    __tablename__ = 'sentences'
+class ExplosiveSentence(Base):
+    __tablename__ = 'explosive_sentences'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     email_id = Column(UUID(as_uuid=True), ForeignKey('emails.id'))
     content = Column(String, nullable=False)
 
-    email = relationship("Email", back_populates="sentences")
+    email = relationship("Email", back_populates="explosive_sentences")

@@ -3,7 +3,6 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
 
-from app.psql_db.connection import session_maker
 from app.psql_db.models import Base
 
 
@@ -20,7 +19,9 @@ class Email(Base):
 
     location = relationship("Location", back_populates="email")
     device_info = relationship("DeviceInfo", back_populates="email")
-    sentences = relationship("Sentence", back_populates="email")
+
+    hostage_sentences = relationship("HostageSentence", back_populates="email")
+    explosive_sentences = relationship("ExplosiveSentence", back_populates="email")
 
     def __repr__(self):
         return f"<Email(email='{self.email}', username='{self.username}')>"
